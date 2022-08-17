@@ -1,0 +1,4 @@
+﻿char;varchar;text;nchar;nvarchar;ntext;binary;varbinary;image;
+bit;tinyint;smallint;int;bigint;decimal;numeric;smallmoney;money;float;real;
+datetime;datetime2;smalldatetime;date;time;datetimeoffset;timestamp;
+sql_variant;uniqueidentifier;xml;cursor;table

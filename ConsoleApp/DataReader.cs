@@ -39,6 +39,7 @@
                 ((List<ImportedObject>)ImportedObjects).Add(importedObject);
             }
 
+            var dataTypeCleaner = new DataTypeCleaner("datatypes.csv");     // for extra clearing of DataType property
             // clear and correct imported data
             foreach (var importedObject in ImportedObjects)
             {
@@ -48,6 +49,8 @@
                 importedObject.ParentName = importedObject.ParentName.Trim().Replace(" ", "").Replace(Environment.NewLine, "");
                 importedObject.ParentType = importedObject.ParentType.Trim().Replace(" ", "").Replace(Environment.NewLine, "");
                 importedObject.DataType = importedObject.DataType.Trim().Replace(" ", "").Replace(Environment.NewLine, "");
+                // extra clearing of DataType property
+                importedObject.DataType = dataTypeCleaner.ExtraCleaning(importedObject.DataType);
             }
 
             // assign number of children
