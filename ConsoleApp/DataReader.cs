@@ -114,7 +114,7 @@
         public string DataType { get; set; }
         public string IsNullable { get; set; }
 
-        public double NumberOfChildren;
+        public uint NumberOfChildren;
     }
 
     class ImportedObjectBaseClass
