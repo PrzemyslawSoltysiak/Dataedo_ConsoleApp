@@ -47,6 +47,7 @@
                 importedObject.Schema = importedObject.Schema.Trim().Replace(" ", "").Replace(Environment.NewLine, "");
                 importedObject.ParentName = importedObject.ParentName.Trim().Replace(" ", "").Replace(Environment.NewLine, "");
                 importedObject.ParentType = importedObject.ParentType.Trim().Replace(" ", "").Replace(Environment.NewLine, "");
+                importedObject.DataType = importedObject.DataType.Trim().Replace(" ", "").Replace(Environment.NewLine, "");
             }
 
             // assign number of children
