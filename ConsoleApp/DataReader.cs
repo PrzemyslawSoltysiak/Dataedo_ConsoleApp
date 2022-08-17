@@ -29,12 +29,12 @@
                 var importedLine = importedLines[i];
                 var values = importedLine.Split(';');
                 var importedObject = new ImportedObject();
-                importedObject.Type = values.ElementAtOrDefault(0);
-                importedObject.Name = values.ElementAtOrDefault(1);
-                importedObject.Schema = values.ElementAtOrDefault(2);
-                importedObject.ParentName = values.ElementAtOrDefault(3);
-                importedObject.ParentType = values.ElementAtOrDefault(4);
-                importedObject.DataType = values.ElementAtOrDefault(5);
+                importedObject.Type = values.ElementAtOrDefault(0) ?? string.Empty;
+                importedObject.Name = values.ElementAtOrDefault(1) ?? string.Empty;
+                importedObject.Schema = values.ElementAtOrDefault(2) ?? string.Empty;
+                importedObject.ParentName = values.ElementAtOrDefault(3) ?? string.Empty;
+                importedObject.ParentType = values.ElementAtOrDefault(4) ?? string.Empty;
+                importedObject.DataType = values.ElementAtOrDefault(5) ?? string.Empty;
                 importedObject.IsNullable = values.ElementAtOrDefault(6) == "1" ? true : false;
                 ((List<ImportedObject>)ImportedObjects).Add(importedObject);
             }
