@@ -13,7 +13,7 @@
 
         public void ImportAndPrintData(string fileToImport, bool printData = true)
         {
-            ImportedObjects = new List<ImportedObject>() { new ImportedObject() };
+            ImportedObjects = new List<ImportedObject>();
 
             var streamReader = new StreamReader(fileToImport);
 
