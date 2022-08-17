@@ -103,18 +103,15 @@
 
     class ImportedObject : ImportedObjectBaseClass
     {
-        public string Schema;
+        public string Schema { get; set; }
 
-        public string ParentName;
-        public string ParentType
-        {
-            get; set;
-        }
+        public string ParentName { get; set; }
+        public string ParentType { get; set;}
 
         public string DataType { get; set; }
         public bool IsNullable { get; set; }
 
-        public uint NumberOfChildren;
+        public uint NumberOfChildren { get; set; }
     }
 
     class ImportedObjectBaseClass
