@@ -29,13 +29,13 @@
                 var importedLine = importedLines[i];
                 var values = importedLine.Split(';');
                 var importedObject = new ImportedObject();
-                importedObject.Type = values[0];
-                importedObject.Name = values[1];
-                importedObject.Schema = values[2];
-                importedObject.ParentName = values[3];
-                importedObject.ParentType = values[4];
-                importedObject.DataType = values[5];
-                importedObject.IsNullable = values[6];
+                importedObject.Type = values.ElementAtOrDefault(0);
+                importedObject.Name = values.ElementAtOrDefault(1);
+                importedObject.Schema = values.ElementAtOrDefault(2);
+                importedObject.ParentName = values.ElementAtOrDefault(3);
+                importedObject.ParentType = values.ElementAtOrDefault(4);
+                importedObject.DataType = values.ElementAtOrDefault(5);
+                importedObject.IsNullable = values.ElementAtOrDefault(6) == "1" ? true : false;
                 ((List<ImportedObject>)ImportedObjects).Add(importedObject);
             }
 
@@ -87,7 +87,7 @@
                                     {
                                         if (column.ParentName == table.Name)
                                         {
-                                            Console.WriteLine($"\t\tColumn '{column.Name}' with {column.DataType} data type {(column.IsNullable == "1" ? "accepts nulls" : "with no nulls")}");
+                                            Console.WriteLine($"\t\tColumn '{column.Name}' with {column.DataType} data type {(column.IsNullable ? "accepts nulls" : "with no nulls")}");
                                         }
                                     }
                                 }
@@ -112,7 +112,7 @@
         }
 
         public string DataType { get; set; }
-        public string IsNullable { get; set; }
+        public bool IsNullable { get; set; }
 
         public uint NumberOfChildren;
     }
