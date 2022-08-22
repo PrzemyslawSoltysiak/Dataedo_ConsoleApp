@@ -4,7 +4,62 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@if (Model.ImportedObjects.Count() == 0)
+{
+    <div class="container col-4">
+        <form method="post">
+            <h5 class="text-center mt-5">Pobierz dane z pliku .csv</h5>
+            <div class="row my-4">
+                <label asp-for="FileName" class="col-form-label col text-end">Nazwa pliku <i>.csv</i>:</label>
+                <div class="col">
+                    <input asp-for="FileName" class="form-control" />
+                </div>
+            </div>
+            <div class="container text-center">
+                <input type="submit" value="Pobierz dane" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+}
+else
+{
+<div class="container w-75 mx-auto">
+    @foreach (var database in Model.ImportedObjects.Where(obj => obj.Type == "DATABASE").ToList())
+    {
+        <h4 class="mt-5 text-center">@($"Database '{database.Name}' ({database.NumberOfChildren} tables)")</h4>
+        @foreach (var table in Model.ImportedObjects)
+        {
+            @if (table.ParentType.ToUpper() == database.Type && table.ParentName == database.Name)
+            {
+                <h5 class="mt-5 ps-3">@($"Table '{table.Schema}.{table.Name}' ({table.NumberOfChildren} columns)")</h5>
+                if (table.NumberOfChildren != 0)
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="w-50 ps-3">Name</th>
+                                <th class="w-25 ps-3">Data Type</th>
+                                <th class="w-25 text-center">Is Nullable</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var column in Model.ImportedObjects)
+                            {
+                                @if (column.ParentType.ToUpper() == table.Type && column.ParentName == table.Name)
+                                {
+                                    <tr>
+                                        <td class="ps-3">@column.Name</td>
+                                        <td class="ps-3">@column.DataType</td>
+                                        <td class="text-center">@column.IsNullable</td>
+                                    </tr>   
+                                }
+                            }
+                        </tbody>
+                    </table>
+                }
+            }
+        }
+        <hr class="mt-5" />
+    }
 </div>
+}
